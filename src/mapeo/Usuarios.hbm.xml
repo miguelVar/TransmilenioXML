@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 6/10/2020 07:46:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.Usuarios" table="usuarios" catalog="transmilenio" optimistic-lock="version">
+        <id name="idUsuario" type="int">
+            <column name="id_usuario" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombreUsuario" type="string">
+            <column name="nombre_usuario" length="45" not-null="true" />
+        </property>
+        <property name="apellidoUsuario" type="string">
+            <column name="apellido_usuario" length="45" not-null="true" />
+        </property>
+        <property name="numeroCelular" type="string">
+            <column name="numero_celular" length="45" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="45" />
+        </property>
+        <one-to-one name="recorridos" class="modelo.Recorridos"></one-to-one>
+    </class>
+</hibernate-mapping>

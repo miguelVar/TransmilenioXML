@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 6/10/2020 07:46:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.Servicios" table="servicios" catalog="transmilenio" optimistic-lock="version">
+        <id name="idServicio" type="int">
+            <column name="id_servicio" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="tipoServicio" class="modelo.TipoServicio" fetch="select">
+            <column name="tipo_servicio_id_tipo_servicio" not-null="true" />
+        </many-to-one>
+        <property name="nombreServicio" type="string">
+            <column name="nombre_servicio" length="10" not-null="true" />
+        </property>
+        <property name="colorServicio" type="string">
+            <column name="color_servicio" length="10" not-null="true" />
+        </property>
+        <property name="descripcionServicio" type="string">
+            <column name="descripcion_servicio" length="50" />
+        </property>
+        <property name="tiempoOpera" type="string">
+            <column name="tiempo_opera" length="8" not-null="true" />
+        </property>
+        <set name="recorridosHasServicioses" table="recorridos_has_servicios" inverse="false" lazy="true" fetch="select" cascade="all">
+            <key>
+                <column name="servicios_id_servicio" not-null="true" />
+            </key>
+            <one-to-many class="modelo.RecorridosHasServicios" />
+        </set>
+        <set name="horarios" table="horario" inverse="true" lazy="true" fetch="select" cascade="all">
+            <key>
+                <column name="servicios_id_servicio" not-null="true" />
+            </key>
+            <one-to-many class="modelo.Horario" />
+        </set>
+        <set name="rutases" table="rutas" inverse="true" lazy="true" fetch="select" cascade="all">
+            <key>
+                <column name="servicios_id_servicio" not-null="true" />
+            </key>
+            <one-to-many class="modelo.Rutas" />
+        </set>
+    </class>
+</hibernate-mapping>

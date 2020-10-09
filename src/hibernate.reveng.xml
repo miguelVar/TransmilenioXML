@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="transmilenio"/>
+  <table-filter match-name="estaciones"/>
+  <table-filter match-name="horario"/>
+  <table-filter match-name="zonas"/>
+  <table-filter match-name="servicios"/>
+  <table-filter match-name="rutas"/>
+  <table-filter match-name="recorridos"/>
+  <table-filter match-name="recorridos_has_servicios"/>
+  <table-filter match-name="dias"/>
+  <table-filter match-name="tipo_servicio"/>
+  <table-filter match-name="troncales"/>
+  <table-filter match-name="usuarios"/>
+</hibernate-reverse-engineering>

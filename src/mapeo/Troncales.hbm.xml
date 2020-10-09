@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 6/10/2020 07:46:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.Troncales" table="troncales" catalog="transmilenio" optimistic-lock="version">
+        <id name="idTroncal" type="int">
+            <column name="id_troncal" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombreTroncal" type="string">
+            <column name="nombre_troncal" length="30" not-null="true" />
+        </property>
+        <property name="letraTroncal" type="string">
+            <column name="letra_troncal" length="1" not-null="true" />
+        </property>
+        <set name="zonases" table="zonas" inverse="true" lazy="true" fetch="select" cascade="all">
+            <key>
+                <column name="troncales_id_troncal" not-null="true" />
+            </key>
+            <one-to-many class="modelo.Zonas" />
+        </set>
+    </class>
+</hibernate-mapping>

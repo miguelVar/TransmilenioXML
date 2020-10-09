@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 6/10/2020 07:46:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.Estaciones" table="estaciones" catalog="transmilenio" optimistic-lock="version">
+        <id name="idEstacion" type="int">
+            <column name="id_estacion" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="zonas" class="modelo.Zonas" fetch="select">
+            <column name="zonas_id_zona" not-null="true" />
+        </many-to-one>
+        <property name="nombreEstacion" type="string">
+            <column name="nombre_estacion" length="30" not-null="true" />
+        </property>
+        <property name="portal" type="java.lang.Boolean">
+            <column name="portal" />
+        </property>
+        <set name="recorridosHasServiciosesForEstacioneFin" table="recorridos_has_servicios" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="estacioneFin" not-null="true" />
+            </key>
+            <one-to-many class="modelo.RecorridosHasServicios" />
+        </set>
+        <set name="recorridosHasServiciosesForEstacionInicio" table="recorridos_has_servicios" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="estacionInicio" not-null="true" />
+            </key>
+            <one-to-many class="modelo.RecorridosHasServicios" />
+        </set>
+        <set name="rutases" table="rutas" inverse="true" lazy="true" fetch="select" cascade="all">
+            <key>
+                <column name="estaciones_id_estacion" not-null="true" />
+            </key>
+            <one-to-many class="modelo.Rutas" />
+        </set>
+    </class>
+</hibernate-mapping>
